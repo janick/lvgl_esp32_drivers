@@ -92,21 +92,21 @@ bool xpt2046_read(lv_indev_drv_t * drv, lv_indev_data_t * data)
     {
         valid = true;
 
-        x = xpt2046_cmd(CMD_X_READ);
-        y = xpt2046_cmd(CMD_Y_READ);
+        int16_t x0 = xpt2046_cmd(CMD_X_READ);
+        int16_t y0 = xpt2046_cmd(CMD_Y_READ);
         ESP_LOGI(TAG, "P(%d,%d)", x, y);
 
         /*Normalize Data back to 12-bits*/
-        x = x >> 4;
-        y = y >> 4;
-        ESP_LOGI(TAG, "P_norm(%d,%d)", x, y);
+        x = x0; // x >> 4;
+        y = y0; //y >> 4;
+        // ESP_LOGI(TAG, "P_norm(%d,%d)", x, y);
         
         xpt2046_corr(&x, &y);
         xpt2046_avg(&x, &y);
         last_x = x;
         last_y = y;
 
-        ESP_LOGI(TAG, "x = %d, y = %d", x, y);
+        ESP_LOGI(TAG, "P(%d, %d) x = %d, y = %d", x0, y0, x, y);
     }
     else
     {

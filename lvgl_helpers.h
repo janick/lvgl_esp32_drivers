@@ -9,6 +9,12 @@
 extern "C" {
 #endif
 
+#define LCD_WIDTH   320
+#define LCD_HEIGHT  480
+
+#define LV_HOR_RES_MAX   LCD_WIDTH
+
+
 /*********************
  *      INCLUDES
  *********************/

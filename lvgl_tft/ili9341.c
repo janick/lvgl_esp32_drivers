@@ -81,7 +81,7 @@ void ili9341_init(void)
 	};
 
 	//Initialize non-SPI GPIOs
-    gpio_pad_select_gpio(ILI9341_DC);
+    esp_rom_gpio_pad_select_gpio(ILI9341_DC);
 	gpio_set_direction(ILI9341_DC, GPIO_MODE_OUTPUT);
 
 #if ILI9341_USE_RST
@@ -103,7 +103,7 @@ void ili9341_init(void)
 		ili9341_send_cmd(ili_init_cmds[cmd].cmd);
 		ili9341_send_data(ili_init_cmds[cmd].data, ili_init_cmds[cmd].databytes&0x1F);
 		if (ili_init_cmds[cmd].databytes & 0x80) {
-			vTaskDelay(100 / portTICK_RATE_MS);
+			vTaskDelay(100 / portTICK_PERIOD_MS);
 		}
 		cmd++;
 	}
