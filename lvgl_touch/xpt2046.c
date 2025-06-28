@@ -94,7 +94,7 @@ bool xpt2046_read(lv_indev_drv_t * drv, lv_indev_data_t * data)
 
         int16_t x0 = xpt2046_cmd(CMD_X_READ);
         int16_t y0 = xpt2046_cmd(CMD_Y_READ);
-        ESP_LOGI(TAG, "P(%d,%d)", x, y);
+        // ESP_LOGI(TAG, "P(%d,%d)", x, y);
 
         /*Normalize Data back to 12-bits*/
         x = x0; // x >> 4;
@@ -106,7 +106,7 @@ bool xpt2046_read(lv_indev_drv_t * drv, lv_indev_data_t * data)
         last_x = x;
         last_y = y;
 
-        ESP_LOGI(TAG, "P(%d, %d) x = %d, y = %d", x0, y0, x, y);
+        // ESP_LOGI(TAG, "P(%d, %d) x = %d, y = %d", x0, y0, x, y);
     }
     else
     {
